@@ -6,5 +6,6 @@ class NewController < ActionController::API
     url = params[:url]
     drop = Drops.create(url)
     Flavours.start(drop)
+    redirect_to controller: :welcome, action: :index
   end 
 end

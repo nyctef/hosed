@@ -1,0 +1,25 @@
+<h1>test view</h1>
+<center>
+    <div id="content">
+    
+        <%= form_tag("/api/drop", method:"post") do %>
+            <%= label_tag(:url, "add URL:") %>
+            <%= text_field_tag(:url) %>
+            <%= submit_tag("Submit") %>
+        <% end %>
+
+        <ul>
+        <% @entries.each do |entry| %>
+            <li>
+            <%= entry[:url] %>
+                <ul>
+                    <% entry[:data].each do |k,v| %>
+                        <li> <b> <%= k %> </b> <%= v %> </li>
+                    <% end %>
+                </ul>
+            </li>
+        <% end %>
+        </ul>
+
+    </div>
+</center>
