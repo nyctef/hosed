@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'rails_helper'
 
 class DropTest < ActiveSupport::TestCase
   test "requires a url" do
