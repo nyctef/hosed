@@ -1,2 +1,2 @@
-describe Filters do
+describe Flavours do
 end
