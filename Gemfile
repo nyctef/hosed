@@ -37,6 +37,9 @@ gem 'bson_ext'
 # use rails-api for leaner controllers
 gem "rails-api"
 
+# use resque for background jobs
+gem "resque", "~> 1.22.0"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

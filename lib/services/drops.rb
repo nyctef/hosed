@@ -4,4 +4,8 @@ module Drops
     drop.save
     drop
   end
+
+  def self.find(id)
+    Drop.find(id)
+  end
 end

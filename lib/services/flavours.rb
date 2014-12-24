@@ -1,3 +1,13 @@
+module FlavourWorker
+  def perform(id)
+    drop = Drops.find(id)
+    attrs = get_attrs(drop.url)
+    attrs.each { |k,v|
+      drop.set(k => v)
+    }
+  end
+end
+
 class Flavours
   @flavours = []
 
@@ -7,17 +17,11 @@ class Flavours
 
   def self.start(drop)
     @flavours.each { |f| 
-      attrs = f.call(drop.url)
-      attrs.each { |k,v|
-        drop.set(k => v)
-      }
+      Resque.enqueue(f, drop.id)
     }
   end
 
-  def self.add(callable=nil, &block)
-    if not callable.present? ^ block.present?
-      raise "exactly one callable or block is required"
-    end
-    @flavours << (callable || block)
+  def self.add(flavour)
+    @flavours << flavour
   end
 end

@@ -1,6 +1,17 @@
 describe Flavours do
+
+  class ReturnsFooBar
+    extend FlavourWorker
+    @queue = :flavours
+    def self.get_attrs(url)
+      {foo: "bar"}
+    end
+  end
+
   before :each do
     Flavours.reset
+    Resque.inline = true
+    allow(Drops).to receive(:find).and_return(drop)
   end
 
   let (:url) { "a-url" }
@@ -10,18 +21,18 @@ describe Flavours do
     Flavours.start(drop)
   end
   it "accepts a flavour to add" do
-    Flavours.add { |url| {foo: "bar"} }
+    Flavours.add ReturnsFooBar
   end
   it "runs flavours on processed urls" do
-    fl = double("flavour")
-    expect(fl).to receive(:call).with(url).and_return({foo: "bar"})
+    expect(ReturnsFooBar).to receive(:get_attrs).with(url).and_return({foo: "bar"})
 
-    Flavours.add fl
+    Flavours.add ReturnsFooBar
     Flavours.start(drop)
   end
   it "adds returned key/value pairs to the model" do
-    Flavours.add { |url| {baz: "qux"} }
-    expect(drop).to receive(:set).with(:baz => "qux")
+    Flavours.add ReturnsFooBar
+    
+    expect(drop).to receive(:set).with(:foo => "bar")
 
     Flavours.start(drop)
   end
