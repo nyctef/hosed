@@ -12,6 +12,7 @@ describe Flavours do
     Flavours.reset
     Resque.inline = true
     allow(Drops).to receive(:find).and_return(drop)
+    allow(drop).to receive(:set)
   end
 
   let (:url) { "a-url" }

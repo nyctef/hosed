@@ -12,9 +12,6 @@ development:
   database: hosed_development
 
 test:
-  <<: *defaults
-  database: hosed_test
-  w: 0
 
 # set these environment variables on your prod server
 production:
