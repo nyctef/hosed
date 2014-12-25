@@ -1,3 +1,5 @@
+require "mongo_mapper"
+
 class Drop
   include MongoMapper::Document
 

@@ -1,4 +1,5 @@
 require_relative "../../lib/services/html_title"
+require_relative "../../app/models/drop"
 
 describe HtmlTitle do
   let (:url) { "a-url" }
@@ -9,8 +10,11 @@ describe HtmlTitle do
   end
 
   it "should accept drop id in perform method" do
+    allow(HtmlTitle).to receive(:get_attrs).and_return({})
     expect(HtmlTitle.perform(:id)).not_to be_nil
   end
 
-  it "should fetch the title from a webpage"
+  it "should fetch the title from a webpage", :vcr, record: :new_episodes do
+    expect(HtmlTitle.get_attrs("http://google.co.uk")).to eq ({ html_title: "Google" })
+  end
 end

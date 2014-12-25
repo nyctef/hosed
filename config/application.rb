@@ -9,6 +9,7 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
+require_relative "../lib/services/html_title"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -31,6 +32,10 @@ module Hosed
     # set up mongo ( http://mongomapper.com/documentation/getting-started/rails.html )
     config.generators do |g|
       g.orm :mongo_mapper
+    end
+
+    config.after_initialize do 
+      Flavours.add HtmlTitle
     end
 
   end

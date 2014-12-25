@@ -56,8 +56,14 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
 
+group :test do
   # Use RSpec for tests
   gem 'rspec-rails', '~> 3.0'
+
+  # Use vcr for record/replay
+  gem 'vcr'
+  gem 'webmock', '< 1.16'
 end
 

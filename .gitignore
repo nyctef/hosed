@@ -9,3 +9,6 @@
 /tmp
 
 *.swp
+
+# Ignore record/replay recordings
+spec/cassettes

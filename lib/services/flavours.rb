@@ -1,3 +1,5 @@
+require_relative "../../lib/services/drops"
+
 module FlavourWorker
   def perform(id)
     drop = Drops.find(id)
