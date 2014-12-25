@@ -23,6 +23,8 @@ class YoutubeVideo
     {
       youtube_video_title: video_info["title"],
       youtube_video_author: video_info["author"],
+      # todo: we assume the first listed video has the highest quality
+      # todo: need to cope with videos with obfuscated dl links
       youtube_video_dl: fmt_stream_map.first["url"],
     }
   end
