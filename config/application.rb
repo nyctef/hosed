@@ -10,6 +10,7 @@ require "action_view/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
 require_relative "../lib/services/html_title"
+require_relative "../lib/services/youtube_video"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -36,6 +37,7 @@ module Hosed
 
     config.after_initialize do 
       Flavours.add HtmlTitle
+      Flavours.add YoutubeVideo
     end
 
   end
