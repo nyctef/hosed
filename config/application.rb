@@ -40,5 +40,11 @@ module Hosed
       Flavours.add YoutubeVideo
     end
 
+    # allow CORS
+    config.action_dispatch.default_headers = {
+      'Access-Control-Allow-Origin' => '*',
+      'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(","),
+    }
+
   end
 end
