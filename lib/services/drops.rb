@@ -1,8 +1,6 @@
 module Drops
   def self.create(url)
-    drop = Drop.new(url: url)
-    drop.save
-    drop
+    Drop.find_or_create_by_url(url)
   end
 
   def self.find(id)

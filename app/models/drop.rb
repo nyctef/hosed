@@ -7,3 +7,5 @@ class Drop
 
   validates :url, presence: true
 end
+
+Drop.ensure_index [[:url, 1]], :unique => true
