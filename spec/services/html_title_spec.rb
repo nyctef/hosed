@@ -15,6 +15,6 @@ describe HtmlTitle do
   end
 
   it "should fetch the title from a webpage", :vcr, record: :new_episodes do
-    expect(HtmlTitle.get_attrs("http://google.co.uk")).to eq ({ html_title: "Google" })
+    expect(HtmlTitle.get_attrs("http://google.co.uk")).to eq ({ html: {title: "Google" }})
   end
 end

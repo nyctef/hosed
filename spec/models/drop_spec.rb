@@ -11,4 +11,11 @@ class DropTest < ActiveSupport::TestCase
     drop.set(:html_title => 'example')
     assert drop.save
   end
+
+  test "can have nested attributes" do
+    drop = Drop.new(url: 'http://example.com')
+    drop.set(html: {title: "example"})
+    assert drop.save
+    expect(drop[:html][:title]).to eq 'example'
+  end
 end

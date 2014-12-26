@@ -19,17 +19,17 @@ describe YoutubeVideo do
   end
 
   it "should add video title to attrs", :vcr, record: :new_episodes do
-    expect(YoutubeVideo.get_attrs("https://www.youtube.com/watch?v=9bZkp7q19f0")).to \
-      include(youtube_video_title: "PSY - GANGNAM STYLE (강남스타일) M/V")
+    expect(YoutubeVideo.get_attrs("https://www.youtube.com/watch?v=9bZkp7q19f0")[:youtube]).to \
+      include(title: "PSY - GANGNAM STYLE (강남스타일) M/V")
   end
 
   it "should add video author to attrs", :vcr, record: :new_episodes do 
-    expect(YoutubeVideo.get_attrs("https://www.youtube.com/watch?v=9bZkp7q19f0")).to \
-      include(youtube_video_author: "officialpsy")
+    expect(YoutubeVideo.get_attrs("https://www.youtube.com/watch?v=9bZkp7q19f0")[:youtube]).to \
+      include(author: "officialpsy")
   end
 
   it "should add video download link to attrs", :vcr, record: :new_episodes do
-    expect(YoutubeVideo.get_attrs("https://www.youtube.com/watch?v=9bZkp7q19f0")).to \
-      include(:youtube_video_dl)
+    expect(YoutubeVideo.get_attrs("https://www.youtube.com/watch?v=9bZkp7q19f0")[:youtube]).to \
+      include(:video_dl)
   end
 end
