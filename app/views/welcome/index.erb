@@ -11,10 +11,19 @@
         <ul>
         <% @entries.each do |entry| %>
             <li>
-            <%= entry[:url] %>
+            <% if not entry[:data][:html] %>
+                <%= entry[:url] %>
+            <% end %>
                 <ul>
                     <% entry[:data].each do |k,v| %>
-                        <li> <b> <%= k %> </b> <%= v %> </li>
+                        <% case k %>
+                        <% when :html %>
+                            <li> <a target="_blank" href="<%= entry[:url] %>"><%= v["title"] %></a>
+                        <% when :youtube %>
+                            <li> <a target="_blank" href="<%= v["video_dl"] %>"><%= v["title"] %></a> by <%= v["author"] %>
+                        <% else %>
+                            <li> <b> <%= k %> </b> <%= v %> </li>
+                        <% end %>
                     <% end %>
                 </ul>
             </li>
